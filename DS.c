@@ -1,86 +1,55 @@
 #include<stdio.h>
-
-#define INFINITY 999
-#define MAX 10
-
-int k,a,b,u,v,n,ne=1;
- int min,mincost=0,cost[MAX][MAX];
-int i,j,parent[MAX];
-
-void Kruskal(int cost[MAX][MAX],int n)
+int stack[3];
+int top = -1,i,j;
+int Max = 3-1;
+int item;
+int flag = 0;
+void Push()
 {
 
+       for(i=0;i<=Max;i++){
+        scanf("%d",&item);
+       }
 
-for(i=1;i<=n;i++)
-	{
-		for(j=1;j<=n;j++)
-		{
+        for(i=0;i<=Max;i++){
+        stack[i]=item;
+        top++;
+        }
 
-			if(cost[i][j]==0)
-				cost[i][j]=INFINITY;
-		}
-	}
-	printf("The edges of Minimum Cost Spanning Tree are\n");
-	while(ne < n)
-	{
-		for(i=1,min=INFINITY;i<=n;i++)
-		{
-			for(j=1;j <= n;j++)
-			{
-				if(cost[i][j] < min)
-				{
-					min=cost[i][j];
-					a=u=i;
-					b=v=j;
-				}
-			}
-		}
-		u=find(u);
-		v=find(v);
-		if(uni(u,v))
-		{
-			printf("%d edge (%d,%d) = %d\n",ne++,a,b,min);
-			mincost = mincost + min;
-		}
-		cost[a][b]=cost[b][a]=INFINITY;
-	}
-	printf("Total cost = %d\n",mincost);
+     Pop();
+
+}
+void Pop()
+{
+
+    for(i=0,j=top;i<=top,j>=0;i++,j--)
+
+    {
+
+       if(stack[i]==stack[j]){
+          flag = 0;
+        top--;
+
+       }
+
+
+    }
+    if(flag==0)
+    {
+        printf("It is  a palindrome\n");
+    }
+    else {
+        printf("It is  not a palindrome\n");
+    }
+
 
 }
 
 
 
-int find(int i)
-{
-	while(parent[i])
-	i=parent[i];
-	return i;
-}
-int uni(int i,int j)
-{
-	if(i!=j)
-	{
-		parent[j]=i;
-		return 1;
-	}
-	return 0;
 
-}
 int main()
 {
-
-	printf("\nEnter the no. of vertex:");
-	scanf("%d",&n);
-	printf("\nEnter the cost adjacency matrix:\n");
-	for(i=1;i<=n;i++)
-	{
-		for(j=1;j<=n;j++)
-		{
-			scanf("%d",&cost[i][j]);
-
-		}
-	}
-	Kruskal(cost,n);
-
-	return 0;
+    int ch;
+   Push();
 }
