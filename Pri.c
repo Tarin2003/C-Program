@@ -2,23 +2,32 @@
 #define INFINITY 999
 #define MAX 10
 
+
+int main()
+
+{
+
 int a,b,u,v,n,i,j,ne=1;
 
 int visited[MAX]={0},min ,mincost=0,cost[MAX][MAX];
 
-void Prims(int cost[MAX][MAX], int n)
-{
-    for(i=1;i<=n;i++)
+	printf("\nEnter the number of vertex:");
+
+	scanf("%d",&n);
+
+	printf("\nEnter the cost adjacency matrix:\n");
+
+	for(i=1;i<=n;i++)
 
 	for(j=1;j<=n;j++)
 
 	{
 
-
+		scanf("%d",&cost[i][j]);
 
 		if(cost[i][j]==0)
 
-			cost[i][j]=INFINITY;
+			cost[i][j]=999;
 
 	}
 
@@ -65,32 +74,6 @@ void Prims(int cost[MAX][MAX], int n)
 	}
 
 	printf("Total cost = %d",mincost);
-
-}
-
-int main()
-
-{
-
-
-
-	printf("\nEnter the number of vertex:");
-
-	scanf("%d",&n);
-
-	printf("\nEnter the cost adjacency matrix:\n");
-
-	for(i=1;i<=n;i++)
-
-	for(j=1;j<=n;j++)
-
-	{
-
-		scanf("%d",&cost[i][j]);
-
-	}
-	Prims(cost,n);
-
 
 	return 0;
 
